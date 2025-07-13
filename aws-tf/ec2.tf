@@ -62,6 +62,14 @@ resource "aws_instance" "ec2" {
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.ec2-sg.id]
   key_name               = aws_key_pair.deployer.key_name
+  iam_instance_profile   = aws_iam_instance_profile.profile.name
+
+  user_data = <<-EOF
+              #!/bin/bash
+              amazon-linux-extras install docker -y
+              service docker start
+              usermod -a -G docker ec2-user
+              EOF
 
   tags = {
     Name = "${var.project_name}-ec2"

@@ -24,6 +24,11 @@ variable "ec2_budget_limit" {
 }
 
 variable "pub_key" {
-    type = string
-    description = "Public key of the EC2 instance to SSH"
+  type        = string
+  description = "Public key of the EC2 instance to SSH"
+}
+
+variable "instance_type" {
+  type        = string
+  description = "EC2 instance size"
 }

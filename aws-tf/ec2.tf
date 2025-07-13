@@ -52,16 +52,16 @@ data "aws_ami" "amazon-linux-2" {
 }
 
 resource "aws_key_pair" "deployer" {
-  key_name   = "rkreber-key"
+  key_name   = "${var.project_name}-key"
   public_key = var.pub_key
 }
 
 resource "aws_instance" "ec2" {
-  ami                         = data.aws_ami.amazon-linux-2.id
-  instance_type               = "t3.micro"
-  subnet_id                   = aws_subnet.public.id
-  vpc_security_group_ids      = [aws_security_group.ec2-sg.id]
-  key_name                    = aws_key_pair.deployer.key_name
+  ami                    = data.aws_ami.amazon-linux-2.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.public.id
+  vpc_security_group_ids = [aws_security_group.ec2-sg.id]
+  key_name               = aws_key_pair.deployer.key_name
 
   tags = {
     Name = "${var.project_name}-ec2"

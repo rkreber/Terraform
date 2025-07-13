@@ -16,8 +16,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Account    = "rkreber"
-      Region     = "US-EAST-1"
+      Account   = "rkreber"
+      Region    = "US-EAST-1"
       Terraform = "True"
     }
   }

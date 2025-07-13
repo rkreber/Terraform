@@ -20,7 +20,7 @@ resource "aws_iam_policy" "policy" {
   name = "${var.project_name}-ecr-access-policy"
   policy = jsonencode({
     Version = "2012-10-17"
-    statement = [
+    Statement = [
       {
         Action = [
           "ecr:*",
@@ -34,7 +34,7 @@ resource "aws_iam_policy" "policy" {
 
 resource "aws_iam_policy_attachment" "attach" {
   name       = "${var.project_name}-attachment"
-  roles      = ["{aws_iam_role.role.name}"]
+  roles      = ["${aws_iam_role.role.name}"]
   policy_arn = aws_iam_policy.policy.arn
 }
 

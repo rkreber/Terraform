@@ -1,5 +1,5 @@
 # Local .terraform directories
-aws-tf/.terraform/*
+**/.terraform/*
 
 # Terraform state files
 *.tfstate
